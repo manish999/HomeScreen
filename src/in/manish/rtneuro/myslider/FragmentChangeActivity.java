@@ -1,12 +1,7 @@
 package in.manish.rtneuro.myslider;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.SyncStateContract.Constants;
 import android.support.v4.app.Fragment;
-import android.text.format.DateUtils;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -142,17 +137,21 @@ public class FragmentChangeActivity extends BaseSliderActivity {
 		//		getSlidingMenu().showContent();
 	}
 
-	//	public void switchFragment(Fragment fragment) {
-	//		
-	//
-	//		getSupportFragmentManager()
-	//		.beginTransaction()
-	//		.replace(R.id.content_frame, fragment)
-	//		.addToBackStack(null)
-	//		.commit();
-	//		//		getSupportFragmentManager().findFragmentByTag(arg0)
-	//		getSlidingMenu().showContent();
-	//	}
+		public void switchMenuFragment(Fragment fragment) {
+			
+			getSupportFragmentManager()
+			.beginTransaction()
+			.replace(R.id.menu_frame, fragment)
+			.commit();
+			
+//			getSupportFragmentManager()
+//			.beginTransaction()
+//			.replace(R.id.content_frame, fragment)
+//			.addToBackStack(null)
+//			.commit();
+//			//		getSupportFragmentManager().findFragmentByTag(arg0)
+//			getSlidingMenu().showContent();
+		}
 
 //	public void onSectionItemPressed (Bundle bundle) {
 //		Fragment newContent = FragmentVisit.newInstance();

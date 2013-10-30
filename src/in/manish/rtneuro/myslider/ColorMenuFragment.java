@@ -1,14 +1,9 @@
 package in.manish.rtneuro.myslider;
 
-import com.actionbarsherlock.app.SherlockFragment;
-
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SyncStateContract.Constants;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +12,10 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import com.actionbarsherlock.app.SherlockFragment;
+
 import in.manish.rtneuro.R;
 import in.manish.rtneuro.util.AppLog;
 
@@ -35,10 +32,10 @@ public class ColorMenuFragment extends SherlockFragment {
 			R.drawable.ic_launcher,
 			R.drawable.ic_launcher,
 			R.drawable.ic_launcher};
-	private String[] slider_menu_text = new String[]{"A",
-			"B",
-			"C",
-	"D"};
+	private String[] slider_menu_text = new String[]{"Add User Icon",
+			"Add Alert Notification",
+			"Add Visual Display",
+	"Add Text Display"};
 	private ArrayList<Profile> profilesList = new ArrayList<Profile>();
 	private ArrayList<Account> accountList = new ArrayList<Account>();
 	private ExpandableListAdapter adapter;
@@ -135,13 +132,13 @@ public class ColorMenuFragment extends SherlockFragment {
 //	}
 
 	// the meat of switching the above fragment
-	private void switchFragment(Fragment fragment) {
+	private void switchMenuContent(Fragment fragment) {
 		if (getActivity() == null)
 			return;
 
 		if (getActivity() instanceof FragmentChangeActivity) {
 			FragmentChangeActivity fca = (FragmentChangeActivity) getActivity();
-			fca.switchContent(fragment);
+			fca.switchMenuFragment(fragment);
 		} 
 	}
 	
@@ -170,10 +167,53 @@ public class ColorMenuFragment extends SherlockFragment {
 			public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
 				ExpandableListAdapter ad = (ExpandableListAdapter) parent.getExpandableListAdapter();
 				String acName = (String) ad.getGroup(groupPosition);
-//				AppSettings.setPreference(AccountListActivity.this, null, AppSettings.ACCOUNT_NAME, acName);
-				AppLog.d("List", "Group clicked");
+				
+				Fragment newContent = null;
+				Bundle bundle = new Bundle();
+				//pop all fragments from backstack on click sliding menu
+				getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+				switch (groupPosition) {
+				case 0:
+					newContent = FragmentHomeMenuUser.newInstance();
+					break;
+				case 1:
+					newContent = FragmentHomeMenuAlert.newInstance();
+					//			bundle.putString(Constants.TAB_TYPE, whichTab);
+					//			bundle.putString(Constants.PROFILE, profile);
+					//			bundle.putString(key, value);
+					//			newContent.setArguments(args);
+					break;
+				case 2:
+					//direct call fragment.
+					newContent = FragmentHomeMenuVisual.newInstance();
+					// View pager with header slide
+//					newContent = new SampleTitlesStyledLayout();
+					break;
+				case 3:
+					newContent =  FragmentHomeMenuText.newInstance();
+					break;
+				case 4:
+					newContent =  FragmentHomeMenuText.newInstance();
+					break;
+				}
+				if (newContent != null)
+					switchMenuContent(newContent);
 				return false;
 			}
+//				if(groupPosition == 0) {
+//					switchFragment(fragment)
+//				} else if(groupPosition == 1) {
+//					//add alert icon
+//				} else if(groupPosition == 2) {
+//					// add visual icon
+//				}else if(groupPosition == 3) {
+//					// add text icon
+//				}
+//				
+////				AppSettings.setPreference(AccountListActivity.this, null, AppSettings.ACCOUNT_NAME, acName);
+//				AppLog.d("List", "Group clicked");
+//				return false;
+//			}
 		});
 
 		// Initialize the adapter with blank groups and children
@@ -181,21 +221,30 @@ public class ColorMenuFragment extends SherlockFragment {
 		adapter = new ExpandableListAdapter(getActivity(), new ArrayList<String>(),
 				new ArrayList<Account>());
 		Profile profile = new Profile();
-		profile.setProfileName("a");
-		profilesList.add(profile);
-		profile = new Profile();
-		profile.setProfileName("b");
-		profilesList.add(profile);
-		profile = new Profile();
-		profile.setProfileName("c");
-		profilesList.add(profile);
+//		profile.setProfileName("a");
+//		profilesList.add(profile);
+//		profile = new Profile();
+//		profile.setProfileName("b");
+//		profilesList.add(profile);
+//		profile = new Profile();
+//		profile.setProfileName("c");
+//		profilesList.add(profile);
+//		profilesList.add(profile);
 		
 		Account account = new Account();
-		account.setAccountName("ac1");
+		account.setAccountName("Add User Icon");
 		account.setProfiles(profilesList);
 		accountList.add(account);
 		account = new Account();
-		account.setAccountName("ac2");
+		account.setAccountName("Add Alert Notification");
+		account.setProfiles(profilesList);
+		accountList.add(account);
+		account = new Account();
+		account.setAccountName("Add Visual Display");
+		account.setProfiles(profilesList);
+		accountList.add(account);
+		account = new Account();
+		account.setAccountName("Add Text Display");
 		account.setProfiles(profilesList);
 		accountList.add(account);
 		
