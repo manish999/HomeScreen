@@ -1,0 +1,10 @@
+<resources>
+
+    <string-array name="color_names">
+        <item>RealTime</item>
+        <item>Visitors</item>
+        <item>Adwords</item>
+        <item>Reports</item>
+    </string-array>
+
+</resources>

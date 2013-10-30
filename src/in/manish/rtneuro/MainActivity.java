@@ -1,8 +1,9 @@
-package com.example.rtneorohomescreen;
+package in.manish.rtneuro;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import in.manish.rtneuro.R;
 
 public class MainActivity extends Activity
 {
