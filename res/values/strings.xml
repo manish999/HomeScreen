@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RTNeoroHomeScreen</string>
+    <string name="app_name">RTNeuro HomeScreen</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="changing_fragments">Changing screen</string>
+    <string name="changing_fragments">Home screen</string>
     
     <string name="add_user_icon">Add User Icon</string>
     <string name="add_alert_notification">Add Alert Notification</string>
