@@ -29,8 +29,21 @@
             </intent-filter>
         </activity>
         -->
+        <!-- sliding menu bar with deep navigation in sidemenu. -->
+        <!--
         <activity
             android:name="in.manish.rtneuro.myslider.FragmentChangeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        -->
+        <activity
+            android:name="in.manish.rtneuro.tab.ActivityIphoneBottomTab"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
